@@ -23,5 +23,10 @@
 }
 .content {
   grid-area: c;
+<<<<<<< HEAD
   background-color: lightblue;
+=======
+  background-color: blue;
+  
+>>>>>>> 50d3ee042c5a68620413a1b03e1cd81dfbb6a8db
 }
