@@ -1,27 +1,16 @@
 .app-wrapper {
-  width: 80%;
+  margin: 0 auto;
+  width: 1200px;
   display: grid;
   grid-template-areas:
-    "h  h"
-    "n  c";
+    "h h h"
+    "n c c";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   column-gap: 15px;
   row-gap: 15px;
 }
 
-.header {
-  grid-area: h;
-  background-color:green;
-}
-.header img {
-  width: 50px;
-}
-.nav {
-  grid-area: n;
-  background-color: goldenrod;
-}
-.content {
-  grid-area: c;
-  background-color: lightblue;
-}
+
+
+
