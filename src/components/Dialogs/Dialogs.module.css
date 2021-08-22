@@ -1,20 +1,40 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    
+  display: grid;
+  grid-template-columns: 2fr 10fr;
 }
-.dialog a{
-    text-decoration: none;
-    color: black;
+.dialog a {
+  text-decoration: none;
+  color: rgb(82, 50, 12);
+  display: block;
+  margin-bottom: 15px;
 }
 .dialogsItems {
-    padding: 10px;
+  padding: 10px;
 }
-.dialog .active{
-    color: darkorange;
+.dialog .active {
+  color: darkorange;
 }
 .messages {
-    padding: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+ 
 }
-.messages .message {
+
+.message {
+  width: 100px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: rgb(82, 50, 12) 1px solid;
+  border-radius: 5px;
+  background-color: rgb(207, 234, 243);
+}
+
+.avatar img {
+  width: 23px;
+  border-radius: 5rem;
+  display: table-cell;
+  vertical-align: text-bottom;
+  
 }
