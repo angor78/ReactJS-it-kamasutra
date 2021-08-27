@@ -1,6 +1,7 @@
-.cover {
-  width: 90%;
+
+
+.descriptionBlock img{
+    width: 170px;
+    background-color: #fff;
 }
-.descriptionBlock{
-    padding: 10px;
-}
+

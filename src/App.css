@@ -4,14 +4,20 @@
   display: grid;
   grid-template-areas:
     "h h h"
-    "n c c";
-  grid-template-rows: 60px 1fr;
+    "n c c"
+    'f c c';
+  grid-template-rows: 100px 1fr;
   grid-template-columns: 2fr 10fr;
-  column-gap: 15px;
-  row-gap: 15px;
+  column-gap: 5px;
+  row-gap: 5px;
 }
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: lightblue;
+  background-color: whitesmoke;
+}
+.sidebar{
+  grid-area: f;
+  background: whitesmoke;
+  padding: 10px;
 }

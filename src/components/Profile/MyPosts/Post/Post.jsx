@@ -7,7 +7,7 @@ const Post = (props) => {
     <div className={s.item}>
       <img
         alt="ava"
-        src="https://im0-tub-ru.yandex.net/i?id=2d001fc315acc21401601db5f9e46d4d&n=13&exp=1"
+        src="https://p7.hiclipart.com/preview/127/587/715/atom-logo-industry-nuclear-power-others.jpg"
       />
       {props.message}
       <div>

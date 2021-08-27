@@ -1,3 +1,14 @@
-.avatar img{
-    width: 20px;
+.avatar {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  margin: 3px;
+  font-weight:200;
+  
+}
+
+.avatar img {
+  width: 25px;
+  
+
 }

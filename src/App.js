@@ -15,8 +15,11 @@ const App = (props) => {
   return (
     <div className="app-wrapper">
       <Header />
-      <Navbar />
-
+      <Navbar/>
+      <div className='sidebar'>
+        <Sidebar state={props.state.sidebar} />
+      </div>
+      
       <div className="app-wrapper-content">
         <Route
           path="/dialogs"
@@ -40,7 +43,6 @@ const App = (props) => {
         <Route path="/music" render={() => <Music />} />
         <Route path="/settings" render={() => <Settings />} />
       </div>
-      <Sidebar state={props.state.sidebar} />
     </div>
   );
 };
