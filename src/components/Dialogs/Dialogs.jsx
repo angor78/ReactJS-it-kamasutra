@@ -3,9 +3,9 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {
-  addMessageActionCreator,
+  sendMessageActionCreator,
   updateMessageTextActionCreator,
-} from "../../redux/state";
+} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
   //debugger
@@ -17,8 +17,8 @@ const Dialogs = (props) => {
   ));
   let newMessageElement = React.createRef();
 
-  let addMessage = () => {
-    props.dispatch(addMessageActionCreator());
+  let onSendMessage = () => {
+    props.dispatch(sendMessageActionCreator());
   };
 
   let onMessageChange = () => {
@@ -37,8 +37,9 @@ const Dialogs = (props) => {
           ref={newMessageElement}
           value={props.dialogsPage.newMessageText}
           onChange={onMessageChange}
+          placeholder='Enter your message'
         />
-        <button onClick={addMessage}>Add message</button>
+        <button onClick={onSendMessage}>Send message</button>
       </div>
     </div>
   );
