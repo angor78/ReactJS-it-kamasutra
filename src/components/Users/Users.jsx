@@ -1,76 +1,54 @@
 import React from "react";
 import style from "./Users.module.css";
+import * as axios from "axios";
+import user from "../../assets/images/user.png";
 
-const Users = (props) => {
-  if (props.users.length === 0) {
-    props.setUsers([
-      {
-        id: 1,
-        followed: true,
-        ava:
-          "https://w7.pngwing.com/pngs/295/920/png-transparent-computer-icons-hairstyle-silhouette-hair-shapes-animals-photography-monochrome-thumbnail.png",
-        fullName: "Alex",
-        status: "I am OK!",
-        location: { place: "Penza", country: "Russia" },
-      },
-      {
-        id: 2,
-        followed: true,
-        ava:
-          "https://w7.pngwing.com/pngs/295/920/png-transparent-computer-icons-hairstyle-silhouette-hair-shapes-animals-photography-monochrome-thumbnail.png",
-
-        fullName: "Den",
-
-        status: "I am OK!",
-        location: { place: "SPB", country: "Russia" },
-      },
-      {
-        id: 3,
-        followed: false,
-        ava:
-          "https://w7.pngwing.com/pngs/295/920/png-transparent-computer-icons-hairstyle-silhouette-hair-shapes-animals-photography-monochrome-thumbnail.png",
-
-        fullName: "Stas",
-        status: "I am OK!",
-        location: { place: "Moscow", country: "Russia" },
-      },
-    ]);
+class Users extends React.Component {
+  constructor(props) {
+    super(props);
+    axios("https://social-network.samuraijs.com/api/1.0/users").then(
+      (response) => {
+        this.props.setUsers(response.data.items);
+      }
+    );
   }
 
-  return (
-    <div>
-      {props.users.map((u) => (
-        <div key={u.id} className={style.wrapper}>
-          <div>
-            <img alt={"ava"} src={u.ava} className={style.userAva} />
-            {u.fullName}
-            <span>{u.location.place}</span>
-            <span>{u.location.country}</span>
+  render() {
+    return (
+      <div>
+        {this.props.users.map((u) => (
+          <div key={u.id} className={style.wrapper}>
+            <div>
+              <img alt={"ava"} src={user} className={style.userAva} />
+              {u.name}
+              {/* <span>{'u.location.place'}</span>
+            <span>{'u.location.country'}</span> */}
+            </div>
+            <div>
+              {u.followed ? (
+                <button
+                  onClick={() => {
+                    this.props.unFollow(u.id);
+                  }}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    this.props.follow(u.id);
+                  }}
+                >
+                  Follow
+                </button>
+              )}
+              {u.status}
+            </div>
           </div>
-          <div>
-            {u.followed ? (
-              <button
-                onClick={() => {
-                  props.unFollow(u.id);
-                }}
-              >
-                Unfollow
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  props.follow(u.id);
-                }}
-              >
-                Follow
-              </button>
-            )}
-            {u.status}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+        ))}
+      </div>
+    );
+  }
+}
 
 export default Users;
