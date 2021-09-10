@@ -3,6 +3,15 @@
   margin: 10px;
   padding: 10px;
 }
+.wrapPagination span{
+  cursor:pointer;
+  margin-left: 10px;
+  display: inline-block;
+}
 .userAva {
   width: 50px;
+}
+.selectedPage{
+  font-weight: bold;
+  
 }
