@@ -7,7 +7,7 @@ import {
   setCurrentPageAC,
   setUsersTotalCountAC,
 } from "../../redux/users-reduser";
-import Users from "./Users";
+
 import Users from "../Users/Users";
 import * as axios from "axios";
 
@@ -69,12 +69,7 @@ let addDispatchToProps = (dispatch) => {
     setUsers: (users) => {
       dispatch(setUsersAC(users));
     },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageAC(pageNumber));
-    },
-    setUsersTotalCount:(totalCount)=>{
-      dispatch(setUsersTotalCountAC(totalCount))
-    },
+
     setCurrentPage: (pageNumber) => {
       dispatch(setCurrentPageAC(pageNumber));
     },
