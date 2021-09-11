@@ -3,12 +3,14 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+const TOGGLE_PRELOADER = "TOGGLE_PRELOADER";
 
 const initialState = {
   users: [],
   totalUsersCount: 21,
-  pageSize: 5,
+  pageSize: 15,
   currentPage: 4,
+  isFetching: false,
 };
 
 const usersReduser = (state = initialState, action) => {
@@ -42,6 +44,9 @@ const usersReduser = (state = initialState, action) => {
     case SET_TOTAL_USERS_COUNT:
       return { ...state, totalUsersCount: action.count };
 
+    case TOGGLE_PRELOADER:
+      return { ...state, isFetching: action.isFetching };
+
     default:
       return state;
   }
@@ -65,6 +70,10 @@ export const setCurrentPageAC = (currentPage) => ({
 export const setUsersTotalCountAC = (totalUsersCount) => ({
   type: SET_TOTAL_USERS_COUNT,
   count: totalUsersCount,
+});
+export const togglePreloaderAC = (isFetching) => ({
+  type: TOGGLE_PRELOADER,
+  isFetching,
 });
 
 export default usersReduser;

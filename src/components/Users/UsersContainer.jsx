@@ -6,25 +6,28 @@ import {
   unFollowUserAC,
   setCurrentPageAC,
   setUsersTotalCountAC,
+  togglePreloaderAC,
 } from "../../redux/users-reduser";
 
 import Users from "../Users/Users";
 import * as axios from "axios";
-
+import Preloader from "../../common/Preloader/Preloader";
 
 class UsersContainer extends React.Component {
   componentDidMount(state) {
+    this.props.togglePreloader(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
-        debugger;
         this.props.setUsersTotalCount(response.data.totalCount);
+        this.props.togglePreloader(false);
       });
   }
   onPageClick = (pageNumber) => {
+    this.props.togglePreloader(true);
     this.props.setCurrentPage(pageNumber);
     axios
       .get(
@@ -32,20 +35,24 @@ class UsersContainer extends React.Component {
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
+        this.props.togglePreloader(false);
       });
   };
 
   render() {
     return (
-      <Users
-        users={this.props.users}
-        totalUsersCount={this.props.totalUsersCount}
-        pageSize={this.props.pageSize}
-        currentPage={this.props.currentPage}
-        onPageClick={this.onPageClick}
-        follow={this.props.follow}
-        unFollow={this.props.unFollow}
-      />
+      <>
+        {this.props.isFetching ? <Preloader /> : null}
+        <Users
+          users={this.props.users}
+          totalUsersCount={this.props.totalUsersCount}
+          pageSize={this.props.pageSize}
+          currentPage={this.props.currentPage}
+          onPageClick={this.onPageClick}
+          follow={this.props.follow}
+          unFollow={this.props.unFollow}
+        />
+      </>
     );
   }
 }
@@ -56,6 +63,7 @@ let addStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     pageSize: state.usersPage.pageSize,
     currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching,
   };
 };
 let addDispatchToProps = (dispatch) => {
@@ -73,8 +81,11 @@ let addDispatchToProps = (dispatch) => {
     setCurrentPage: (pageNumber) => {
       dispatch(setCurrentPageAC(pageNumber));
     },
-    setUsersTotalCount:(totalCount)=>{
-      dispatch(setUsersTotalCountAC(totalCount))
+    setUsersTotalCount: (totalCount) => {
+      dispatch(setUsersTotalCountAC(totalCount));
+    },
+    togglePreloader: (isFetching) => {
+      dispatch(togglePreloaderAC(isFetching));
     },
   };
 };
