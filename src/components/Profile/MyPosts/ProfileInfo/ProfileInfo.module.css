@@ -1,7 +1,46 @@
-
-
-.descriptionBlock img{
-    width: 170px;
-    background-color: #fff;
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "img contacts contacts"
+    "desc desc desc";
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
 }
 
+.avaImg {
+  grid-area: img;
+  width: 230px;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+.avaImg p {
+  text-align: center;
+  text-transform: uppercase;
+}
+.avaImg img {
+  width: 80%;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.contactsBlock {
+  grid-area: contacts;
+  margin-top: 20px;
+  margin-right: 15px;
+  font-weight: 300;
+  border: 1px solid black;
+}
+.contactsBlock h4 {
+  text-align: center;
+}
+.descriptionBlock {
+  grid-area: desc;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+}
+.descriptionBlock h4 {
+  text-align: center;
+}

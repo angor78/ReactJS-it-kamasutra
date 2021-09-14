@@ -51,27 +51,27 @@ const usersReduser = (state = initialState, action) => {
       return state;
   }
 };
-export const followUserAC = (userId) => ({
+export const follow = (userId) => ({
   type: FOLLOW,
   userId,
 });
-export const unFollowUserAC = (userId) => ({
+export const unFollow = (userId) => ({
   type: UNFOLLOW,
   userId,
 });
-export const setUsersAC = (users) => ({
+export const setUsers = (users) => ({
   type: SET_USERS,
   users,
 });
-export const setCurrentPageAC = (currentPage) => ({
+export const setCurrentPage = (currentPage) => ({
   type: SET_CURRENT_PAGE,
   currentPage,
 });
-export const setUsersTotalCountAC = (totalUsersCount) => ({
+export const setUsersTotalCount = (totalUsersCount) => ({
   type: SET_TOTAL_USERS_COUNT,
   count: totalUsersCount,
 });
-export const togglePreloaderAC = (isFetching) => ({
+export const togglePreloader = (isFetching) => ({
   type: TOGGLE_PRELOADER,
   isFetching,
 });
