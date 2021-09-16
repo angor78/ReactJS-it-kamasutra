@@ -8,7 +8,7 @@ const TOGGLE_PRELOADER = "TOGGLE_PRELOADER";
 const initialState = {
   users: [],
   totalUsersCount: 21,
-  pageSize: 15,
+  pageSize: 25,
   currentPage: 4,
   isFetching: false,
 };
