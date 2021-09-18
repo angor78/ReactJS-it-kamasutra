@@ -31,7 +31,8 @@ const ProfileInfo = (props) => {
       <div className={s.descriptionBlock}>
         <h4>Description</h4>
         <ul>
-          <li>{props.profile.aboutMe}</li>
+          <li>About me: {props.profile.aboutMe}</li>
+          <li>Looking for a job: {props.profile.lookingForAJobDescription}</li>
         </ul>
       </div>
     </div>
