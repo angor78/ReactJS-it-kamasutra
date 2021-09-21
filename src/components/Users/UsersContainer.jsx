@@ -8,35 +8,30 @@ import {
   setUsersTotalCount,
   togglePreloader,
 } from "../../redux/users-reduser";
-
 import Users from "../Users/Users";
-import * as axios from "axios";
 import Preloader from "../../common/Preloader/Preloader";
+import { usersAPI } from "../../api/api";
 
 class UsersContainer extends React.Component {
-  componentDidMount(state) {
+  componentDidMount() {
     this.props.togglePreloader(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,{withCredentials: true,}
-      )
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        this.props.setUsersTotalCount(response.data.totalCount);
+    usersAPI
+      .getUsers(this.props.pageSize, this.props.currentPage)
+      .then((data) => {
+        this.props.setUsers(data.items);
+        this.props.setUsersTotalCount(data.totalCount);
         this.props.togglePreloader(false);
       });
   }
+  
   onPageClick = (pageNumber) => {
     this.props.togglePreloader(true);
     this.props.setCurrentPage(pageNumber);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`,{withCredentials: true,}
-      )
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        this.props.togglePreloader(false);
-      });
+
+    usersAPI.getUsers(this.props.pageSize, pageNumber).then((data) => {
+      this.props.setUsers(data.items);
+      this.props.togglePreloader(false);
+    });
   };
 
   render() {
