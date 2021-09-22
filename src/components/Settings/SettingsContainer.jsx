@@ -21,7 +21,7 @@ class SettingsContainer extends React.Component {
         console.log(response);
       });
   };
-
+  
   render() {
     return <Settings {...this.props} uploadFile={this.uploadFile} />;
   }

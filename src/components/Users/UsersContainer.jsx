@@ -7,6 +7,7 @@ import {
   setCurrentPage,
   setUsersTotalCount,
   togglePreloader,
+  toggleFollowingProgress,
 } from "../../redux/users-reduser";
 import Users from "../Users/Users";
 import Preloader from "../../common/Preloader/Preloader";
@@ -23,7 +24,7 @@ class UsersContainer extends React.Component {
         this.props.togglePreloader(false);
       });
   }
-  
+
   onPageClick = (pageNumber) => {
     this.props.togglePreloader(true);
     this.props.setCurrentPage(pageNumber);
@@ -39,7 +40,7 @@ class UsersContainer extends React.Component {
       <>
         {this.props.isFetching ? (
           <Preloader />
-        ) : (
+        ) : ( 
           <Users
             users={this.props.users}
             totalUsersCount={this.props.totalUsersCount}
@@ -48,6 +49,8 @@ class UsersContainer extends React.Component {
             onPageClick={this.onPageClick}
             follow={this.props.follow}
             unFollow={this.props.unFollow}
+            followingProgress={this.props.followingProgress}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
           />
         )}
       </>
@@ -62,31 +65,10 @@ let addStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingProgress: state.usersPage.followingProgress,
   };
 };
-// let addDispatchToProps = (dispatch) => {
-//   return {
-//     follow: (userId) => {
-//       dispatch(followUserAC(userId));
-//     },
-//     unFollow: (userId) => {
-//       dispatch(unFollowUserAC(userId));
-//     },
-//     setUsers: (users) => {
-//       dispatch(setUsersAC(users));
-//     },
 
-//     setCurrentPage: (pageNumber) => {
-//       dispatch(setCurrentPageAC(pageNumber));
-//     },
-//     setUsersTotalCount: (totalCount) => {
-//       dispatch(setUsersTotalCountAC(totalCount));
-//     },
-//     togglePreloader: (isFetching) => {
-//       dispatch(togglePreloaderAC(isFetching));
-//     },
-//   };
-// };
 
 export default connect(addStateToProps, {
   follow,
@@ -95,4 +77,5 @@ export default connect(addStateToProps, {
   setCurrentPage,
   setUsersTotalCount,
   togglePreloader,
+  toggleFollowingProgress,
 })(UsersContainer);

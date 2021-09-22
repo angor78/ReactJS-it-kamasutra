@@ -5,7 +5,7 @@ const initialState = {
   email: null,
   login: null,
   isAuth: false,
-  fullName: null,
+  profile: null,
 };
 
 const authReduser = (state = initialState, action) => {
@@ -16,17 +16,17 @@ const authReduser = (state = initialState, action) => {
         ...state,
         ...action.data,
         isAuth: true,
-        fullName:action.fullName
+        profile:action.profile
       };
 
     default:
       return state;
   }
 };
-export const setAuthUserData = (userId, email, login,fullName) => ({
+export const setAuthUserData = (userId, email, login,profile) => ({
   type: SET_USER_DATA,
   data: { userId, email, login },
-  fullName,
+  profile,
 });
 
 export default authReduser;
