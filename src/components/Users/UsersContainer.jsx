@@ -1,38 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  follow,
-  setUsers,
-  unFollow,
   setCurrentPage,
   setUsersTotalCount,
   togglePreloader,
-  toggleFollowingProgress,
+  getUsers,
+  follow,
+  unfollow,
 } from "../../redux/users-reduser";
 import Users from "../Users/Users";
 import Preloader from "../../common/Preloader/Preloader";
-import { usersAPI } from "../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.togglePreloader(true);
-    usersAPI
-      .getUsers(this.props.pageSize, this.props.currentPage)
-      .then((data) => {
-        this.props.setUsers(data.items);
-        this.props.setUsersTotalCount(data.totalCount);
-        this.props.togglePreloader(false);
-      });
+    this.props.getUsers(this.props.pageSize, this.props.currentPage);
   }
 
   onPageClick = (pageNumber) => {
-    this.props.togglePreloader(true);
-    this.props.setCurrentPage(pageNumber);
-
-    usersAPI.getUsers(this.props.pageSize, pageNumber).then((data) => {
-      this.props.setUsers(data.items);
-      this.props.togglePreloader(false);
-    });
+    this.props.getUsers(this.props.pageSize, pageNumber);
   };
 
   render() {
@@ -40,17 +25,16 @@ class UsersContainer extends React.Component {
       <>
         {this.props.isFetching ? (
           <Preloader />
-        ) : ( 
+        ) : (
           <Users
             users={this.props.users}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             currentPage={this.props.currentPage}
             onPageClick={this.onPageClick}
-            follow={this.props.follow}
-            unFollow={this.props.unFollow}
             followingProgress={this.props.followingProgress}
-            toggleFollowingProgress={this.props.toggleFollowingProgress}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
           />
         )}
       </>
@@ -69,13 +53,11 @@ let addStateToProps = (state) => {
   };
 };
 
-
 export default connect(addStateToProps, {
-  follow,
-  unFollow,
-  setUsers,
   setCurrentPage,
   setUsersTotalCount,
   togglePreloader,
-  toggleFollowingProgress,
+  getUsers,
+  follow,
+  unfollow,
 })(UsersContainer);
