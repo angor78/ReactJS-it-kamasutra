@@ -11,9 +11,6 @@ class ProfileContainer extends React.Component {
       userId = 19509;
     }
     this.props.getUsersProfile(userId);
-    // profileAPI.getProfile(userId).then((data) => {
-    //   this.props.setUsersProfile(data);
-    // });
   }
 
   render() {
@@ -23,6 +20,8 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth,
+
   };
 };
 const UrlWithRouter = withRouter(ProfileContainer);

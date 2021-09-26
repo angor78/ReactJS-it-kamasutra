@@ -33,6 +33,8 @@ const profileReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+
 //ActionCreators
 export const setUsersProfile = (usersProfile) => ({
   type: SET_USERS_PROFILE,
