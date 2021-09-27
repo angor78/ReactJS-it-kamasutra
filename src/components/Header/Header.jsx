@@ -13,6 +13,7 @@ const Header = (props) => {
         />
         NewSocialNet
       </div>
+      
       <div className={s.loginBlock}>
         {props.isAuth?props.login:<NavLink to={"/login"}>LogIn</NavLink>}
       </div>
