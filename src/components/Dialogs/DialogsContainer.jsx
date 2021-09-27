@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { compose } from "redux";
 import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 import {
   sendMessage,
@@ -16,6 +17,7 @@ const addStateToProps = (state) => {
 };
 
 
-const DialogsContainer = WithAuthRedirect(connect(addStateToProps, {sendMessage,updateMessageText})(Dialogs));
-
-export default DialogsContainer;
+export default compose(
+  WithAuthRedirect,
+  connect(addStateToProps, {sendMessage,updateMessageText})
+)(Dialogs)
