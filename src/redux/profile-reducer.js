@@ -11,6 +11,7 @@ let initialState = {
   ],
   newPostText: "it-kamasutra",
   profile: null,
+  status: "Hello world!",
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -33,7 +34,6 @@ const profileReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 
 //ActionCreators
 export const setUsersProfile = (usersProfile) => ({
