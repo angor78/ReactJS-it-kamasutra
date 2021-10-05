@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import s from "./Header.module.css";
 
 const Header = (props) => {
-
   return (
     <header className={s.header}>
       <div className={s.title}>
@@ -13,9 +12,18 @@ const Header = (props) => {
         />
         NewSocialNet
       </div>
-      
+
       <div className={s.loginBlock}>
-        {props.isAuth?props.login:<NavLink to={"/login"}>LogIn</NavLink>}
+        {props.isAuth ? (
+          <div>
+            {props.login}
+            <div>
+              <button onClick={props.logout}>Logout</button>
+            </div>
+          </div>
+        ) : (
+          <NavLink to={"/login"}>LogIn</NavLink>
+        )}
       </div>
     </header>
   );

@@ -15,7 +15,7 @@ const instanceSetting = axios.create({
     "Content-Type": "multipart/form-data",
   },
 });
-
+//usersAPI
 export const usersAPI = {
   getUsers(pageSize, currentPage) {
     return instance
@@ -31,14 +31,9 @@ export const usersAPI = {
       .then((response) => response.data);
   },
 };
-
+//profileAPI
 export const profileAPI = {
-  getAuthMe() {
-    return instance.get(`auth/me`).then((response) => response.data);
-  },
-  postAuthLogin( email, password, rememberMe,captcha) {
-    return instance.post(`auth/login`, { email, password, rememberMe,captcha }).then((response) => response.data);
-  },
+ 
   getMyProfile(id) {
     return instance.get(`profile/` + id).then((response) => response.data);
   },
@@ -46,18 +41,34 @@ export const profileAPI = {
     return instance.get(`profile/` + userId).then((response) => response.data);
   },
   getStatus(userId) {
-    return instance.get(`profile/status/`+ userId).then((response) => response.data);
+    return instance
+      .get(`profile/status/` + userId)
+      .then((response) => response.data);
   },
   updateStatus(status) {
-    return instance.put(`profile/status`, {status}).then((response) => response.data);
+    return instance
+      .put(`profile/status`, { status })
+      .then((response) => response.data);
   },
 };
+//AuthAPI
+export const authAPI = {
+  getAuthMe() {
+    return instance.get(`auth/me`).then((response) => response.data);
+  },
 
+  login(email, password, rememberMe, captcha) {
+    return instance
+      .post(`auth/login`, { email, password, rememberMe, captcha })
+      .then((response) => response.data);
+  },
+  logout() {
+    return instance.delete(`auth/login`).then((response) => response.data);
+  },
+};
+//settingAPI
 export const settingAPI = {
   uploadImage(data) {
-    return instanceSetting.put(
-      `profile/photo`,
-      data,
-    );
+    return instanceSetting.put(`profile/photo`, data);
   },
 };

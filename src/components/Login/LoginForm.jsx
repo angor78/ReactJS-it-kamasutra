@@ -18,7 +18,7 @@ const LoginForm = (props) => {
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: (values) => {
-      props.getValues(values)
+      props.login(values)
     },
   });
   return (

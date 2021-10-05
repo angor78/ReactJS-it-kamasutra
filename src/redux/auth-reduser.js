@@ -1,5 +1,4 @@
-import { profileAPI } from "../api/api";
-
+import { authAPI } from "../api/api";
 const SET_USER_DATA = "SET_USER_DATA";
 
 const initialState = {
@@ -8,9 +7,6 @@ const initialState = {
   login: null,
   isAuth: false,
   profile: null,
-  password: null,
-  rememberMe: false,
-  captcha: false,
 };
 
 const authReduser = (state = initialState, action) => {
@@ -19,45 +15,50 @@ const authReduser = (state = initialState, action) => {
       return {
         ...state,
         ...action.data,
-        isAuth: true,
         profile: action.profile,
       };
 
     default:
-      return state;
+      return state
   }
 };
 //ActionCreators
-export const setAuthUserData = (userId, email, login, profile) => ({
+export const setAuthUserData = (userId, email, login,isAuth, profile) => ({
   type: SET_USER_DATA,
-  data: { userId, email, login },
+  data: { userId, email, login, isAuth },
   profile,
 });
 //ThunkCreators
 export const getAuthMe = () => {
   return (dispatch) => {
-    profileAPI.getAuthMe().then((data) => {
+    authAPI.getAuthMe().then((data) => {
       if (data.resultCode === 0) {
         let { id, email, login } = data.data;
-        dispatch(setAuthUserData(id, email, login));
+        dispatch(setAuthUserData(id, email, login,true));
       }
     });
   };
 };
-export const postAuthLogin = (values) => {
+export const login = (values) => {
   let email = values.email;
   let password = values.password;
   let rememberMe = values.rememberMe;
   let captcha = values.captcha;
   return (dispatch) => {
-    profileAPI
-      .postAuthLogin(email,password,rememberMe,captcha)
-      .then((data) => {
-        if (data.resultCode === 0) {
-          let { id, email, login } = data.data;
-          dispatch(setAuthUserData(id, email, login));
-        }
-      });
+    authAPI.login(email, password, rememberMe, captcha).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(getAuthMe());
+      }
+    });
+  };
+};
+export const logout = () => {
+  return (dispatch) => {
+    authAPI.logout().then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setAuthUserData(null,null,null,false));
+      }
+    });
   };
 };
 export default authReduser;
