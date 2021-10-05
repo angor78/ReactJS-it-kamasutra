@@ -1,8 +1,8 @@
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD_POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_USERS_PROFILE = "SET_USERS_PROFILE";
+const SET_USERS_PROFILE_STATUS = "SET_USERS_PROFILE_STATUS";
 
 let initialState = {
   posts: [
@@ -11,24 +11,23 @@ let initialState = {
   ],
   newPostText: "it-kamasutra",
   profile: null,
-  status: "Hello world!",
+  status: "",
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
-      let text = state.newPostText;
+      debugger
       return {
         ...state,
-        newPostText: "",
-        posts: [...state.posts, { id: 5, message: text, countLike: 0 }],
+        posts: [...state.posts, { id: 5, message: action.newPost, countLike: 0 }],
       };
-
-    case UPDATE_NEW_POST_TEXT:
-      return { ...state, newPostText: action.newText };
 
     case SET_USERS_PROFILE:
       return { ...state, profile: action.usersProfile };
+
+    case SET_USERS_PROFILE_STATUS:
+      return { ...state, status: action.status };
 
     default:
       return state;
@@ -40,19 +39,36 @@ export const setUsersProfile = (usersProfile) => ({
   type: SET_USERS_PROFILE,
   usersProfile,
 });
-export const addPostActionCreator = () => ({
-  type: ADD_POST,
+export const setStatus = (status) => ({
+  type: SET_USERS_PROFILE_STATUS,
+  status,
 });
-export const updateNewPostTextActionCreator = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  newText: text,
+export const addPost = (newPost) => ({
+  type: ADD_POST,newPost
 });
+
 
 //ThunkCreators
 export const getUsersProfile = (userId) => {
   return (dispatch) => {
     profileAPI.getProfile(userId).then((data) => {
       dispatch(setUsersProfile(data));
+    });
+  };
+};
+export const getStatus = (userId) => {
+  return (dispatch) => {
+    profileAPI.getStatus(userId).then((data) => {
+      dispatch(setStatus(data));
+    });
+  };
+};
+export const updateStatus = (status) => {
+  return (dispatch) => {
+    profileAPI.updateStatus(status).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setStatus(data.status));
+      }
     });
   };
 };

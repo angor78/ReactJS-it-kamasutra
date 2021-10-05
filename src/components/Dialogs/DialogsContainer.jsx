@@ -3,7 +3,6 @@ import { compose } from "redux";
 import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 import {
   sendMessage,
-  updateMessageText,
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 
@@ -19,5 +18,5 @@ const addStateToProps = (state) => {
 
 export default compose(
   WithAuthRedirect,
-  connect(addStateToProps, {sendMessage,updateMessageText})
+  connect(addStateToProps, {sendMessage})
 )(Dialogs)

@@ -8,6 +8,9 @@ const initialState = {
   login: null,
   isAuth: false,
   profile: null,
+  password: null,
+  rememberMe: false,
+  captcha: false,
 };
 
 const authReduser = (state = initialState, action) => {
@@ -39,6 +42,22 @@ export const getAuthMe = () => {
         dispatch(setAuthUserData(id, email, login));
       }
     });
+  };
+};
+export const postAuthLogin = (values) => {
+  let email = values.email;
+  let password = values.password;
+  let rememberMe = values.rememberMe;
+  let captcha = values.captcha;
+  return (dispatch) => {
+    profileAPI
+      .postAuthLogin(email,password,rememberMe,captcha)
+      .then((data) => {
+        if (data.resultCode === 0) {
+          let { id, email, login } = data.data;
+          dispatch(setAuthUserData(id, email, login));
+        }
+      });
   };
 };
 export default authReduser;

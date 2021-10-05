@@ -36,13 +36,23 @@ export const profileAPI = {
   getAuthMe() {
     return instance.get(`auth/me`).then((response) => response.data);
   },
+  postAuthLogin( email, password, rememberMe,captcha) {
+    return instance.post(`auth/login`, { email, password, rememberMe,captcha }).then((response) => response.data);
+  },
   getMyProfile(id) {
     return instance.get(`profile/` + id).then((response) => response.data);
   },
   getProfile(userId) {
     return instance.get(`profile/` + userId).then((response) => response.data);
   },
+  getStatus(userId) {
+    return instance.get(`profile/status/`+ userId).then((response) => response.data);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status`, {status}).then((response) => response.data);
+  },
 };
+
 export const settingAPI = {
   uploadImage(data) {
     return instanceSetting.put(
