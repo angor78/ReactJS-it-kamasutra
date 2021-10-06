@@ -8,6 +8,7 @@ import { Login } from "./Login";
 let mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
+    messageFromAPI: state.auth.messageFromAPI,
   };
 };
 

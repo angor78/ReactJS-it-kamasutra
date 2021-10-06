@@ -6,12 +6,14 @@ const initialState = {
   email: null,
   login: null,
   isAuth: false,
+  messageFromAPI:[],
   profile: null,
 };
 
 const authReduser = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
+      debugger
       return {
         ...state,
         ...action.data,
@@ -23,9 +25,9 @@ const authReduser = (state = initialState, action) => {
   }
 };
 //ActionCreators
-export const setAuthUserData = (userId, email, login,isAuth, profile) => ({
+export const setAuthUserData = (userId, email, login,isAuth,messageFromAPI, profile) => ({
   type: SET_USER_DATA,
-  data: { userId, email, login, isAuth },
+  data: { userId, email, login, isAuth, messageFromAPI },
   profile,
 });
 //ThunkCreators
@@ -48,6 +50,8 @@ export const login = (values) => {
     authAPI.login(email, password, rememberMe, captcha).then((data) => {
       if (data.resultCode === 0) {
         dispatch(getAuthMe());
+      }else{
+        dispatch(setAuthUserData(null,null,null,false,data.messages))
       }
     });
   };

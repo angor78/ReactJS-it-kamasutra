@@ -10,7 +10,7 @@ export class Login extends React.Component {
     return (
       <div>
         <h1>Login</h1>
-        <LoginForm login={this.props.login} />
+        <LoginForm login={this.props.login} messageFromAPI={this.props.messageFromAPI}/>
       </div>
     );
   }

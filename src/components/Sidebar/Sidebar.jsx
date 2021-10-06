@@ -4,7 +4,8 @@ import s from "./Sidebar.module.css";
 
 const Sidebar = (props) => {
   let friendsItems = props.friends.map((f) => (
-    <Friends name={f.name} id={f.id} />
+      <Friends name={f.name} id={f.id} />
+    
   ));
   return (
     <div>
