@@ -13,7 +13,6 @@ const initialState = {
 const authReduser = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
-      debugger
       return {
         ...state,
         ...action.data,
@@ -33,7 +32,7 @@ export const setAuthUserData = (userId, email, login,isAuth,messageFromAPI, prof
 //ThunkCreators
 export const getAuthMe = () => {
   return (dispatch) => {
-    authAPI.getAuthMe().then((data) => {
+    return authAPI.getAuthMe().then((data) => {
       if (data.resultCode === 0) {
         let { id, email, login } = data.data;
         dispatch(setAuthUserData(id, email, login,true));

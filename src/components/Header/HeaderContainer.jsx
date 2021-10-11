@@ -4,9 +4,7 @@ import Header from "./Header";
 import { getAuthMe, logout } from "../../redux/auth-reduser";
 
 class HeaderContainer extends React.Component {
-  componentDidMount() {
-    this.props.getAuthMe();
-  }
+
   render() {
     return <Header {...this.props} />;
   }
