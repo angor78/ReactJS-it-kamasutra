@@ -24,7 +24,6 @@ class App extends React.Component {
     if (!this.props.initialized) {
       return <Preloader />;
     }
-    debugger
     return (
       <div className="app-wrapper">
         <HeaderContainer />
