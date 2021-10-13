@@ -20,6 +20,7 @@ const initialState = {
 //Redusers
 const usersReduser = (state = initialState, action) => {
   switch (action.type) {
+
     case FOLLOW:
       return {
         ...state,
