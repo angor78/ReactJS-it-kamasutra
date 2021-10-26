@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import AddStatusForm from "./AddStatusForm";
 
 const ProfileStatusWithHooks = (props) => {
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
 
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
+
   const activateEditMode = () => {
     setEditMode(true);
   };
   const deactivateEditMode = () => {
     setEditMode(false);
+    debugger
     props.updateStatus(status);
   };
   const onStatusChange = (e) => {
@@ -20,7 +25,7 @@ const ProfileStatusWithHooks = (props) => {
       {!editMode && (
         <div>
           <span onDoubleClick={activateEditMode}>
-            {props.status || "Enter status"}
+            {props.status ? props.status : 'Enter status'}
           </span>
         </div>
       )}
