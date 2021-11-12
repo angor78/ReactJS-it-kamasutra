@@ -4,7 +4,8 @@ import Post from "./Post/Post";
 import AddPostForm from "./AddPostForm";
 
 const MyPosts = (props) => {
-  let postsElements = props.posts.map((p) => (
+//immutability pure function
+  let postsElements = [...props.posts].reverse().map((p) => (
     <Post message={p.message} countLike={p.countLike} />
   ));
 
