@@ -1,0 +1,96 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "name": "vscode-jest-tests",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/.bin/jest",
+            "args": [
+                "--runInBand",
+                "--watchAll=false"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "windows": {
+                "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            }
+        },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "name": "Launch add-on",
+            "addonPath": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "name": "vscode-jest-tests-1636804223923",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}\\Jest: Setup Extension",
+            "args": [
+                "test",
+                "--runInBand",
+                "--watchAll=false"
+            ]
+        },
+        {
+            "type": "node",
+            "name": "vscode-jest-tests-1636806890468",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}\\Jest: Setup Extension",
+            "args": [
+                "test",
+                "--runInBand",
+                "--watchAll=false"
+            ]
+        },
+        {
+            "type": "node",
+            "name": "vscode-jest-tests-1636807071504",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}\\Jest: Setup Extension",
+            "args": [
+                "test",
+                "--runInBand",
+                "--watchAll=false"
+            ]
+        },
+        {
+            "type": "node",
+            "name": "vscode-jest-tests",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}\\Jest: Setup Extension",
+            "args": [
+                "test",
+                "--runInBand",
+                "--watchAll=false"
+            ]
+        }
+    ]
+}

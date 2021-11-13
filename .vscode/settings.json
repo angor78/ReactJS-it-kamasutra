@@ -6,5 +6,6 @@
         "redusers",
         "Stas",
         "UNFOLLOW"
-    ]
+    ],
+    "jest.jestCommandLine": "\"Jest: Setup Extension\""
 }
